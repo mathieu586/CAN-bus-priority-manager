@@ -13,22 +13,24 @@ int main() {
     vector<Module> modules;
 
     CANBus bus = CANBus(500000);
-    Module silnik = Module("Silnik", vector<MsgType>{{"Temperatura", 0x010, 4, 10}, MsgType {"Ciśnienie", 0x020, 4, 20}});
+    Module silnik = Module("Silnik", vector<MsgType>{{"Temperatura", 0x010, 4,ms_to_micro_s(10), ms_to_micro_s(50)},
+            {"Ciśnienie", 0x020, 4, ms_to_micro_s(20), ms_to_micro_s(10)}});
 
     modules.push_back(silnik);
 
     while (true) {
         // generating messages
         for (Module& module : modules) {
-            module.update(bus);
+            module.update(bus, current_time);
         }
 
-        // bus handling the messages
-        bus.update();
+        // bus logic
+        bus.update(current_time);
 
-
-        cout << bus.get_queue_size() << "\n";
-        cout << "=================\ntime: " << current_time << "\n==================\n";
+        cout << "=================\ntime: " << current_time << "\n";
+        cout << "Bus queue size: " << bus.get_queue_size() << "\n";
+        cout << "Late masseges count: " << bus.get_late_msg_counter() << "\n";
+        cout  << "\n==================\n";
 
         // time unit: micro seconds
         current_time += 1;

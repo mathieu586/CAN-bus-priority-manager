@@ -11,7 +11,8 @@ struct MsgType {
     std::string name;
     uint16_t id;
     int data_byte_size;
-    int frequency_ms;
+    int frequency_micro_s;
+    int deadline_micro_s;
     int time_until_next_msg = 0;
 };
 
@@ -21,8 +22,8 @@ private:
     std::vector<MsgType> msg_types;
 public:
     Module(std::string name, std::vector<MsgType> msg_types);
-    void update(CANBus& bus);
-    CANFrame generate_frame(const MsgType& msgType);
+    void update(CANBus& bus, unsigned long long current_time);
+    CANFrame generate_frame(const MsgType& msgType, unsigned long long current_time);
 };
 
 
