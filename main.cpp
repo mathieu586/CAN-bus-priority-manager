@@ -3,6 +3,7 @@
 #include "CANBus.h"
 #include "Module.h"
 #include "CANFrame.h"
+#include "Config.h"
 
 using namespace std;
 
@@ -20,8 +21,14 @@ int main() {
         // generating messages
         for (Module& module : modules) {
             module.update(bus);
-
         }
+
+        // bus handling the messages
+        bus.update();
+
+
+        cout << bus.get_queue_size() << "\n";
+        cout << "=================\ntime: " << current_time << "\n==================\n";
 
         // time unit: micro seconds
         current_time += 1;

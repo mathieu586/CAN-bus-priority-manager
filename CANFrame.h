@@ -8,6 +8,8 @@ private:
     int id;
 public:
     CANFrame(int size, int id);
+    bool operator<(const CANFrame& other) const;
+    int get_size() const;
 };
 
 #endif //ZADANIE_2_CANFRAME_H

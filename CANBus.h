@@ -13,6 +13,10 @@ public:
     CANBus(int speed);
     void append_msg(const CANFrame& frame);
     static int calculate_stuff_bits(int data_byte_size);
+    void update();
+
+    // temporary
+    int get_queue_size() const;
 };
 
 #endif //ZADANIE_2_CANBUS_H
