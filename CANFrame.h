@@ -6,10 +6,13 @@ class CANFrame {
 private:
     int size;
     int id;
+    int created_at;
+    int deadline_at;
 public:
-    CANFrame(int size, int id);
+    CANFrame(int size, int id, unsigned long long created_at, unsigned long long deadline);
     bool operator<(const CANFrame& other) const;
     int get_size() const;
+    int get_deadline_at() const;
 };
 
 #endif //ZADANIE_2_CANFRAME_H
