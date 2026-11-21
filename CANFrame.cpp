@@ -34,3 +34,7 @@ void CANFrame::set_delay(unsigned long long delay_val) {
 unsigned long long CANFrame::get_created_at() {
     return created_at;
 }
+
+int CANFrame::get_id() {
+    return id;
+}

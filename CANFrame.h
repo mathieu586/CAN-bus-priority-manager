@@ -16,6 +16,7 @@ public:
     int get_deadline_at() const;
     void set_delay(unsigned long long delay_val);
     unsigned long long get_created_at();
+    int get_id();
 };
 
 #endif //ZADANIE_2_CANFRAME_H

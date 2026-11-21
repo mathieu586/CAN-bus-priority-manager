@@ -14,18 +14,17 @@ int main() {
 
     CANBus bus = CANBus(500000);
     Module silnik = Module("Silnik", vector<MsgType>{{"Temperatura", 0x010, 4,ms_to_micro_s(10), ms_to_micro_s(50)},
-            {"Ciśnienie", 0x020, 4, ms_to_micro_s(20), ms_to_micro_s(10)}});
+            {"Ciśnienie", 0x020, 4, ms_to_micro_s(20), ms_to_micro_s(10)}, {"Poziom paliwa", 0x050, 4, ms_to_micro_s(100)}});
     Module zasilanie = Module("Zasilanie", vector<MsgType>{{"Napiecie akumulatora", 0x100, 2, ms_to_micro_s(100)}});
-    Module nawigacja = Module("Nawigacja", vector<MsgType>{{"Pozycja GPS", 0x200, 8, ms_to_micro_s(200)}});
+    Module nawigacja = Module("Nawigacja", vector<MsgType>{{"Pozycja GPS", 0x200, 8, ms_to_micro_s(200)}, {"Nachylenie", 0x150, 6, ms_to_micro_s(150)}, {"Przyśpieszenie", 0x030, 4, ms_to_micro_s(30)}});
     Module diagnostyka = Module("Diagnostyka", vector<MsgType>{{"Status systemu", 0x300, 4, ms_to_micro_s(500)}});
-
 
     modules.push_back(silnik);
     modules.push_back(zasilanie);
     modules.push_back(nawigacja);
     modules.push_back(diagnostyka);
 
-    while (true) {
+    while (current_time < 50000) {
         // generating messages
         for (Module& module : modules) {
             module.update(bus, current_time);
@@ -42,5 +41,7 @@ int main() {
         // time unit: micro seconds
         current_time += 1;
     }
+    bus.print_msg_stats();
+
     return 0;
 }
