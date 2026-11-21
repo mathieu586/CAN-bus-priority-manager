@@ -9,6 +9,7 @@ CANFrame::CANFrame(int size, int id, unsigned long long created_at, unsigned lon
     }else {
         deadline_at = 0;
     }
+    delay = 0;
 }
 
 bool CANFrame::operator<(const CANFrame &other) const {
@@ -24,4 +25,12 @@ int CANFrame::get_size() const {
 
 int CANFrame::get_deadline_at() const {
     return deadline_at;
+}
+
+void CANFrame::set_delay(unsigned long long delay_val) {
+    this->delay = delay_val;
+}
+
+unsigned long long CANFrame::get_created_at() {
+    return created_at;
 }

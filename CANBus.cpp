@@ -29,6 +29,7 @@ void CANBus::update(unsigned long long current_time) {
 
         if (current_time + time_until_free > current_frame.get_deadline_at() && current_frame.get_deadline_at() != 0) {
             late_msg_counter += 1;
+            current_frame.set_delay(current_time + time_until_free - current_frame.get_created_at());
         }
 
         frame_queue.pop();

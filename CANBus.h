@@ -4,6 +4,10 @@
 #include <queue>
 #include "CANFrame.h"
 
+struct msg_stats {
+
+};
+
 class CANBus {
 private:
     int speed; // unit: bit/s

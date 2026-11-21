@@ -15,8 +15,15 @@ int main() {
     CANBus bus = CANBus(500000);
     Module silnik = Module("Silnik", vector<MsgType>{{"Temperatura", 0x010, 4,ms_to_micro_s(10), ms_to_micro_s(50)},
             {"Ciśnienie", 0x020, 4, ms_to_micro_s(20), ms_to_micro_s(10)}});
+    Module zasilanie = Module("Zasilanie", vector<MsgType>{{"Napiecie akumulatora", 0x100, 2, ms_to_micro_s(100)}});
+    Module nawigacja = Module("Nawigacja", vector<MsgType>{{"Pozycja GPS", 0x200, 8, ms_to_micro_s(200)}});
+    Module diagnostyka = Module("Diagnostyka", vector<MsgType>{{"Status systemu", 0x300, 4, ms_to_micro_s(500)}});
+
 
     modules.push_back(silnik);
+    modules.push_back(zasilanie);
+    modules.push_back(nawigacja);
+    modules.push_back(diagnostyka);
 
     while (true) {
         // generating messages
