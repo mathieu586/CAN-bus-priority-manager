@@ -26,6 +26,7 @@ public:
     int get_queue_size() const;
     int get_late_msg_counter() const;
     void print_msg_stats();
+    unsigned long long time_to_process_1_bit() const;
 };
 
 #endif //ZADANIE_2_CANBUS_H

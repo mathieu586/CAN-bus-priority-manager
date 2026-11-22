@@ -28,7 +28,7 @@ void CANBus::update(unsigned long long current_time) {
 
     if (time_until_free <= 0 && !frame_queue.empty()) {
         CANFrame current_frame = frame_queue.top();
-        time_until_free = current_frame.get_size() * TIME_TO_PROCESS_1_BIT;
+        time_until_free = current_frame.get_size() * time_to_process_1_bit();
 
         if (current_time + time_until_free > current_frame.get_deadline_at() && current_frame.get_deadline_at() != 0) {
             late_msg_counter += 1;
@@ -48,6 +48,8 @@ void CANBus::update(unsigned long long current_time) {
     }
 }
 
+
+
 int CANBus::get_late_msg_counter() const {
     return late_msg_counter;
 }
@@ -65,4 +67,8 @@ void CANBus::print_msg_stats() {
         cout << "Srednie opoznienie: " << std::format("{:.2f}\n", avg_delay);
         cout << "Maksymalne opoznienie: " << stat.max_delay << "\n";
     }
+}
+
+unsigned long long CANBus::time_to_process_1_bit() const {
+    return SECOND_IN_MICRO_SECS / this->speed;
 }
