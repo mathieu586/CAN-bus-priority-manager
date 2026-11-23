@@ -11,9 +11,12 @@ CANBus::CANBus(int speed) {
     this->speed = speed;
     time_until_free = 0;
     late_msg_counter = 0;
+    total_msg_generated_count = 0;
 }
 
 void CANBus::append_msg(const CANFrame& frame) {
+    total_msg_generated_count += 1;
+    msg_stats[frame.get_id()].total_msg_generated_count += 1;
     this->frame_queue.push(frame);
 }
 
@@ -60,10 +63,13 @@ int CANBus::get_queue_size() const {
 
 void CANBus::print_msg_stats() {
     cout << "================================ STATYSTKI WIADOMOSCI ================================\n";
+    cout << "Calkowita liczba wygenerowanych wiadomosci: " << total_msg_generated_count << "\n";
     cout << "Liczba wiadomosci po terminie: " << late_msg_counter << "\n";
     for (const auto& [id, stat] : msg_stats) {
+        unsigned long long starved = stat.total_msg_generated_count - stat.total_msg_sent_count;
         double avg_delay = (stat.total_msg_sent_count != 0) ? stat.total_delay / stat.total_msg_sent_count : 0.0;
         cout << "\n*** Typ wiadomosci (id): " << hex << "0x" << id << dec << "***\n";
+        cout << "Wyslane / Wygenerowane: " << stat.total_msg_sent_count << " / " << stat.total_msg_generated_count << " (zaglodzone: " << starved << ")\n";
         cout << "Srednie opoznienie: " << std::format("{:.2f}\n", avg_delay);
         cout << "Maksymalne opoznienie: " << stat.max_delay << "\n";
     }

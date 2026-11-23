@@ -15,7 +15,7 @@ void Module::update(CANBus& bus, unsigned long long current_time) {
         if (msgType.time_until_next_msg <= 0) {
             bus.append_msg(generate_frame(msgType, current_time));
 
-            msgType.time_until_next_msg = msgType.frequency_micro_s * 1000; // from ms to micro s
+            msgType.time_until_next_msg = msgType.frequency_micro_s;
         }
     }
 }

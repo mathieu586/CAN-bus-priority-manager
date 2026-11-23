@@ -31,10 +31,10 @@ void CANFrame::set_delay(unsigned long long delay_val) {
     this->delay = delay_val;
 }
 
-unsigned long long CANFrame::get_created_at() {
+unsigned long long CANFrame::get_created_at() const {
     return created_at;
 }
 
-int CANFrame::get_id() {
+int CANFrame::get_id() const {
     return id;
 }

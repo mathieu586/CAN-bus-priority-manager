@@ -55,9 +55,10 @@ int main() {
 
     while (current_time < 50000000) {
         // generating messages
-        for (Module& module : modules) {
+        for (Module& module : optimized_id_modules) {
             module.update(bus, current_time);
         }
+
 
         // bus logic
         bus.update(current_time);

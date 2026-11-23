@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 4.1)
-project(Zadanie_2)
+cmake_minimum_required(VERSION 3.20)
+project(can_bus_sim)
 
-set(CMAKE_CXX_STANDARD 26)
+set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Zadanie_2 main.cpp
+add_executable(can_bus_sim main.cpp
         Module.cpp
         Module.h
         CanFrame.h

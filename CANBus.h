@@ -9,6 +9,7 @@ struct MsgStats {
     int total_msg_sent_count = 0;
     int total_delay = 0;
     int max_delay = 0;
+    int total_msg_generated_count = 0;
 };
 
 class CANBus {
@@ -18,6 +19,7 @@ private:
     std::priority_queue<CANFrame> frame_queue;
     int late_msg_counter;
     std::map<int, MsgStats> msg_stats;
+    int total_msg_generated_count;
 public:
     CANBus(int speed);
     void append_msg(const CANFrame& frame);
