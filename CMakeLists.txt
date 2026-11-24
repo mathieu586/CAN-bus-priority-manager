@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(can_bus_sim main.cpp
         Module.cpp
         Module.h
-        CanFrame.h
+        CANFrame.h
         CANFrame.cpp
         CANBus.h
         CANBus.cpp

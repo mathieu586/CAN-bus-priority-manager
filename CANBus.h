@@ -7,7 +7,7 @@
 
 struct MsgStats {
     int total_msg_sent_count = 0;
-    int total_delay = 0;
+    unsigned long long total_delay = 0;
     int max_delay = 0;
     int total_msg_generated_count = 0;
 };
