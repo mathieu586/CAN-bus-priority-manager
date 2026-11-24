@@ -5,12 +5,19 @@ Ten projekt jest symulacją modułów rakiety, które generują wiadomości dla 
 
 ## Struktura projektu
 
-* `Config.h` – stałe konfiguracyjne standardu CAN 2.0A.
-* `CANFrame.h` / `CANFrame.cpp` – reprezentacja pojedynczej ramki CAN.
-* `Module.h` / `Module.cpp` – model modułu pokładowego, generującego zdefiniowane typy wiadomości w zadanych interwałach.
-* `CANBus.h` / `CANBus.cpp` – symulacja magistrali z kolejką priorytetową opartą o identyfikator ID, zliczaniem statystyk opóźnień, spóźnień oraz zagłodzonych ramek.
-* `main.cpp` – konfiguracja modułów oraz uruchomienie pętli symulacji.
-
+```text
+CAN-bus-priority-manager/
+├── CMakeLists.txt      # Konfiguracja budowania projektu CMake
+├── README.md           # Dokumentacja projektu
+├── Config.h            # Stałe konfiguracyjne standardu CAN 2.0A
+├── CANFrame.h          # Deklaracja pojedynczej ramki CAN
+├── CANFrame.cpp        # Reprezentacja pojedynczej ramki CAN
+├── Module.h            # Deklaracja modelu modułu pokładowego
+├── Module.cpp          # Model modułu pokładowego, generującego zdefiniowane typy wiadomości w zadanych interwałach
+├── CANBus.h            # Deklaracja symulatora magistrali CAN
+├── CANBus.cpp          # Symulacja magistrali z kolejką priorytetową opartą o identyfikator ID, zliczaniem statystyk opóźnień, spóźnień oraz zagłodzonych ramek
+└── main.cpp            # Konfiguracja modułów oraz uruchomienie pętli symulacji
+```
 ---
 ## Jak uruchomić
 
