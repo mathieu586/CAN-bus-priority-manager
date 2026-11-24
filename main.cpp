@@ -14,7 +14,7 @@ int main() {
     int default_speed = 500000;
     int slow_speed = 10000;
 
-    CANBus bus = CANBus(slow_speed);
+    CANBus bus = CANBus(default_speed);
     Module silnik = Module("Silnik", vector<MsgType>{
         {"Temperatura", 0x010, 4,ms_to_micro_s(10), ms_to_micro_s(50)},
         {"Ciśnienie", 0x020, 4, ms_to_micro_s(20), ms_to_micro_s(10)},
